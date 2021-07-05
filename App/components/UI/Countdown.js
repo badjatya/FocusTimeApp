@@ -39,11 +39,14 @@ const Countdown = ({ minutes = 20, isPaused }) => {
 
   // Using useEffect
   useEffect(() => {
+    if (isPaused) {
+      return;
+    }
     interval.current = setInterval(countDown, 1000);
 
     // Clearing
     return () => clearInterval(interval.current);
-  }, []);
+  }, [isPaused]);
 
   return (
     <Text style={styles.text}>

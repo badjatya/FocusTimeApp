@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 // IMPORTING Components
 import Countdown from "../../components/UI/Countdown";
+import RoundedButton from "../../components/UI/RoundedButton";
 
 // IMPORTING Colors
 import Colors from "../../constants/Colors";
@@ -11,15 +12,25 @@ import Colors from "../../constants/Colors";
 import { fontSize, spacing } from "../../constants/sizes";
 
 const Timer = ({ focusSubject }) => {
+  // State
+  const [isStarted, setIsStarted] = useState(false);
   return (
     <View style={styles.container}>
       <View style={styles.countdown}>
-        <Countdown />
+        <Countdown isPaused={!isStarted} />
       </View>
 
       <View style={styles.taskContainer}>
         <Text style={styles.title}>Focusing on: </Text>
         <Text style={styles.task}>{focusSubject}</Text>
+      </View>
+
+      <View style={styles.buttonContainer}>
+        {isStarted ? (
+          <RoundedButton title="Pause" onPress={() => setIsStarted(false)} />
+        ) : (
+          <RoundedButton title="Start" onPress={() => setIsStarted(true)} />
+        )}
       </View>
     </View>
   );
@@ -47,5 +58,11 @@ const styles = StyleSheet.create({
     flex: 0.5,
     justifyContent: "center",
     alignItems: "center",
+  },
+  buttonContainer: {
+    flex: 0.3,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 15,
   },
 });
