@@ -14,15 +14,11 @@ import { fontSize, spacing } from "../../constants/sizes";
 const Timer = ({ focusSubject }) => {
   // State
   const [isStarted, setIsStarted] = useState(false);
+
   return (
     <View style={styles.container}>
       <View style={styles.countdown}>
-        <Countdown isPaused={!isStarted} />
-      </View>
-
-      <View style={styles.taskContainer}>
-        <Text style={styles.title}>Focusing on: </Text>
-        <Text style={styles.task}>{focusSubject}</Text>
+        <Countdown focusSubject={focusSubject} isPaused={!isStarted} />
       </View>
 
       <View style={styles.buttonContainer}>
@@ -42,22 +38,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  taskContainer: {
-    paddingTop: spacing.md,
-  },
-  title: {
-    color: Colors.white,
-    textAlign: "center",
-  },
-  task: {
-    color: Colors.white,
-    textAlign: "center",
-    fontWeight: "bold",
-  },
+
   countdown: {
     flex: 0.5,
-    justifyContent: "center",
-    alignItems: "center",
+    padding: spacing.xxl,
+    width: "100%",
   },
   buttonContainer: {
     flex: 0.3,
