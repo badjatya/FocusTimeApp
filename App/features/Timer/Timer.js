@@ -13,7 +13,9 @@ import { fontSize, spacing } from "../../constants/sizes";
 const Timer = ({ focusSubject }) => {
   return (
     <View style={styles.container}>
-      <Countdown />
+      <View style={styles.countdown}>
+        <Countdown />
+      </View>
 
       <View style={styles.taskContainer}>
         <Text style={styles.title}>Focusing on: </Text>
@@ -26,7 +28,9 @@ const Timer = ({ focusSubject }) => {
 export default Timer;
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    flex: 1,
+  },
   taskContainer: {
     paddingTop: spacing.md,
   },
@@ -38,5 +42,10 @@ const styles = StyleSheet.create({
     color: Colors.white,
     textAlign: "center",
     fontWeight: "bold",
+  },
+  countdown: {
+    flex: 0.5,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
