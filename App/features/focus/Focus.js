@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 // IMPORTING From react native paper library
@@ -7,14 +7,22 @@ import { TextInput } from "react-native-paper";
 // IMPORTING Components
 import RoundedButton from "../../components/UI/RoundedButton";
 
-const Focus = () => {
+const Focus = ({ addSubject }) => {
+  const [tempItem, setTempItem] = useState(null);
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
         <Text style={styles.title}>What would you like to focus</Text>
         <View style={styles.inputContainer}>
-          <TextInput style={styles.textInput} />
-          <RoundedButton title="+" size={50} />
+          <TextInput
+            style={styles.textInput}
+            onChangeText={(text) => setTempItem(text)}
+          />
+          <RoundedButton
+            title="+"
+            size={50}
+            onPress={() => addSubject(tempItem)}
+          />
         </View>
       </View>
     </View>
